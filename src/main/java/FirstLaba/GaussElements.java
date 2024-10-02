@@ -1,4 +1,4 @@
-package src.FirstLaba;
+package FirstLaba;
 
 public class GaussElements {
 

@@ -1,11 +1,11 @@
-package src.SecondLaba;
+package SecondLaba;
 
 import java.util.Arrays;
-
-public class JacobiMethod {
+public class GaussZeidelMethod {
     private static final double EPSILON = 0.01;
 
     public static void main(String[] args) {
+
         double[][] A = {
                 {6.9000, 0.0319, 0.0390, 0.0461},
                 {0.0191, 6.0000, 0.0333, 0.0405},
@@ -18,32 +18,32 @@ public class JacobiMethod {
         double[] x = new double[b.length];
         Arrays.fill(x, 0);
 
-        jacobiMethod(A, b, x);
+        gaussSeidelMethod(A, b, x);
     }
 
-    public static void jacobiMethod(double[][] A, double[] b, double[] x) {
+    public static void gaussSeidelMethod(double[][] A, double[] b, double[] x) {
         int n = b.length;
-        double[] newX = new double[n];
         boolean convergence;
 
         int iteration = 0;
         do {
             convergence = true;
             for (int i = 0; i < n; i++) {
+                double oldXi = x[i];
                 double sum = b[i];
+
                 for (int j = 0; j < n; j++) {
                     if (j != i) {
                         sum -= A[i][j] * x[j];
                     }
                 }
-                newX[i] = sum / A[i][i];
+                x[i] = sum / A[i][i];
 
-                if (Math.abs(newX[i] - x[i]) > EPSILON) {
+                if (Math.abs(x[i] - oldXi) > EPSILON) {
                     convergence = false;
                 }
             }
 
-            System.arraycopy(newX, 0, x, 0, n);
             iteration++;
 
             System.out.println("Итерация " + iteration + ": " + Arrays.toString(x));
