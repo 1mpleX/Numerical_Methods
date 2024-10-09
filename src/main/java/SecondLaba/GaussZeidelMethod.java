@@ -12,7 +12,6 @@ public class GaussZeidelMethod {
                 {0.0134, 0.0149, 5.1000, 0.0348},
                 {0.0077, 0.0205, 0.0220, 4.2000}
         };
-
         double[] b = {5.6632, 6.1119, 6.2000, 5.9275};
 
         double[] x = new double[b.length];
